@@ -1,0 +1,116 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block container %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+
+  </head>
+
+  <body>
+
+
+    <!-- Page Content -->
+    <div class="page-heading about-heading header-text">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="text-content">
+              <h4>about us</h4>
+              <h2>our company</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="best-features about-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Our Background</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="{% static 'app1/about1.jpg' %}" alt="">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4>Who we are &amp; What we do?</h4>
+              <p>sofa store is a non government organization established to deals with selling of all kinds of furnitures including sofa, bedsofa,showcase and dressing table<br><br>sofa store group always we delivery quality products with up to warranty, so be trustfully to work with us.</p>
+              <ul class="social-icons">
+                <li><a href="https://www.instagram.com/icon_sko/"><i class="fa-brands fa-instagram" style="color: darkgreen;"></i></a></li>
+                <li><a href="https://x.com/KatagaSams13556/"><i class="fa-brands fa-x-twitter" style="color: darkgreen;"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/samson-kataga-260995271/"><i class="fa-brands fa-linkedin-in" style="color: darkgreen;"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="team-members">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>Our Team Members</h2>
+            </div>
+          </div>
+
+
+          {% for i in x %}
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="{{i.image.url}}" alt="">
+                <div class="hover-effect">
+                  <div class="hover-content">
+                    <ul class="social-icons">
+                      <li><a href="https://www.instagram.com/icon_sko/"><i class="fa-brands fa-instagram" style="color: darkgreen;"></i></a></li>
+                      <li><a href="https://x.com/KatagaSams13556/"><i class="fa-brands fa-x-twitter" style="color: darkgreen;"></i></a></li>
+                      <li><a href="https://www.linkedin.com/in/samson-kataga-260995271/"><i class="fa-brands fa-linkedin-in" style="color: darkgreen;"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="down-content">
+                <h4>{{i.name}}</h4>
+                <span>{{i.position}}</span>
+                <p></p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+   
+
+
+    
+   
+
+
+  </body>
+
+</html>
+
+{% endblock %}

@@ -1,0 +1,156 @@
+
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block title %}Order Summary{% endblock %}
+
+{% block container %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <link href="{% static 'app1/assets/css/bootstrap.min.css' %}" rel='stylesheet' type='text/css' />
+  <link href="css/style.css" rel='stylesheet' type='text/css' />
+  
+  <!-- Custom Theme files -->
+  <link href="{% static 'app1/css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+  <script src="js/wow.min.js"></script><script src="js/jquery-1.12.0.min.js"></script>
+  <script src="{% static 'app1/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="kaz/activity/css/style.css">
+     <style type="text/css">
+          body {
+             padding: 0;
+             margin: 0;
+             background-image: linear-gradient(rgba(35, 35, 37, 0.5),
+                rgba(88, 88, 90, 0.5)),url('{% static 'app1/head3.jpg' %}');
+         }
+        .container1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 500px;
+            margin: 10vh auto;
+            background: transparent;
+            box-shadow: 0 0 15px white;
+            border-radius: 25px;
+        }
+        h2 {
+            font-size: 30px;
+            color: white;
+        }
+        form {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            width: 85%;
+        }
+        .form-item {
+            display: flex;
+            width: 90%;
+            color: white;
+            background: transparent;
+            margin: 10px auto;
+            border-radius: 15px;
+            align-items: center;
+            border-bottom: 1px solid grey;
+        }
+        .form-item:hover {
+            border: 1px solid grey;
+        }
+        input {
+            background: transparent;
+            width: 80%;
+            height: 30px;
+            outline: none;
+            border: none;
+            margin: auto;
+            color: white;
+            font-size: 17px;
+        }
+        span {
+            user-select: none;
+            margin: 5px;
+            color: white;
+            background-color:  rgba(85,81,81,0.637);
+            padding: 5px;
+            border-radius: 40px;
+        }
+        button[type=submit] {
+            width: 250px;
+            font-size: 20px;
+            margin: 10px auto;
+            padding: 8px;
+            background: rgba(122,123,116,0.72);
+            color: white;
+            border-radius: 40px;
+            
+        }
+        button[type=submit]:hover {
+            background: white;
+            color: black;
+            
+        }
+        p {
+            font-size: 18px;
+            margin: 5px;
+            color: white;
+            font-weight: 300;
+        }
+        a {
+            color: blue;
+            font-weight: 600;
+        }
+        a:hover {
+            color: grey;
+        }
+        @media screen and (max-width:550px) {
+            .container {
+                width: 90%;
+            }
+        }
+     </style>
+</head>
+<body>
+    <main class="mt-5 pt-4">
+
+
+<div class="container1">
+        
+            <h2>Sign In</h2>
+        
+        {% for message in messages %}
+    <h5 style="color: white;">{{message}} </h5>
+    {% endfor %}
+            <form method="POST">
+               {% csrf_token %}
+                <div class="form-item">
+                    <label for="">Username</label>
+                    <input type="text" name="username" placeholder="username" required>
+                </div>
+
+                
+
+                <div class="form-item">
+                    <label for="">Password</label>
+                    <input type="password" name="password1" placeholder="enter password" required>
+                </div>
+
+                
+               
+                <button type="submit">signin</button>
+                <p>Not registered? <a href="{% url 'signup' %}">signup</a></p>
+            </form>
+        
+    </div>
+</main>
+</body>
+</html>
+
+{% endblock %}

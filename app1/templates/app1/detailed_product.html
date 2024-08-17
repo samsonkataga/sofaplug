@@ -1,0 +1,57 @@
+
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block container %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+
+	 <div class="best-features">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <h2>About Sofa store</h2>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="left-content">
+              <h4></h4>
+              <h2>{{detailed_product.title}}</h2>
+              <p> {{detailed_product.description}}.</p>
+              <ul class="featured-list">
+                <li> Tsh. {{detailed_product.price}}</li>
+                <li>Tsh. <del> {{detailed_product.discount_price}}</del></li>
+                <li><a href="#">{{detailed_product.status}} brand</a></li>
+                
+              </ul>
+              {% if user.is_authenticated %}
+              <a href="{{detailed_product.get_add_to_cart_url}}" class="filled-button">Add to Cart</a>
+              {% else %}
+              <a href="{% url 'signin' %}" class="filled-button">Login to add to cart</a>
+              {% endif  %}
+               
+              <a href="{% url 'ourproduct' %}" class="filled-button">Back</a>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="right-image">
+              <img src="{{detailed_product.image.url}}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+</body>
+</html>
+
+{% endblock %}

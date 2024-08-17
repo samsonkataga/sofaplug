@@ -1,0 +1,98 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block title %}Order Summary{% endblock %}
+
+{% block container %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <link href="{% static 'app1/assets/css/bootstrap.min.css' %}" rel='stylesheet' type='text/css' />
+  <link href="css/style.css" rel='stylesheet' type='text/css' />
+  
+  <!-- Custom Theme files -->
+  <link href="{% static 'app1/css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+  <script src="js/wow.min.js"></script><script src="js/jquery-1.12.0.min.js"></script>
+  <script src="{% static 'app1/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="kaz/activity/css/style.css">
+</head>
+<body>
+  
+   
+
+  <style>
+    .small-img{
+      width: 70px;
+      height: 70px;
+    }
+  </style>
+  <main class="mt-5 pt-4">
+    <div class="container">
+      {% if messages %}
+    {% for message in messages %}
+      <div style="margin-top:5rem;" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+   
+        
+
+  {% if x %}
+  <table class="table" style="margin-top: 4cm;">
+    <tr>
+      <th>SNo</th>
+      <th>name</th>
+      <th>email</th>
+      <th>subject</th>
+      <th>message</th>
+    </tr>
+    
+    {% for i in x %}
+    <tr>
+      <td>{{i.id}}</td>
+      <td>{{i.name}}</td>
+      <td>{{i.email}}</td>
+      <td>{{i.subject}}</td>
+      <td>{{i.message}}</td>
+    </tr>
+    {% endfor %}
+
+    
+  </table>
+  {% else %}
+  <h1>No message sent yet</h1>
+  {% endif %}
+  <button><a href="{% url 'home' %}">Back to home</a></button>
+
+
+
+
+          
+       
+
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+  <script src="{% static 'app1/assets/js/wow.min.js' %}"></script><script src="js/jquery-1.12.0.min.js"></script>
+<script src="{% static 'app1/assets/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+{% endblock %}

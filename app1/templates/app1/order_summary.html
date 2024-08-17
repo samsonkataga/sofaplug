@@ -1,0 +1,147 @@
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block title %}Order Summary{% endblock %}
+
+{% block container %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  <link href="{% static 'app1/assets/css/bootstrap.min.css' %}" rel='stylesheet' type='text/css' />
+  <link href="css/style.css" rel='stylesheet' type='text/css' />
+  
+  <!-- Custom Theme files -->
+  <link href="{% static 'app1/css/animate.css' %}" rel="stylesheet" type="text/css" media="all">
+  <script src="js/wow.min.js"></script><script src="js/jquery-1.12.0.min.js"></script>
+  <script src="{% static 'app1/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="kaz/activity/css/style.css">
+</head>
+<body>
+  
+   
+
+  <style>
+    .small-img{
+      width: 70px;
+      height: 70px;
+    }
+  </style>
+  <main class="mt-5 pt-4">
+    <div class="container">
+      {% if messages %}
+    {% for message in messages %}
+      <div style="margin-top:5rem;" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+      <section class="mb-4">
+        {% if order.items.all %}
+  
+        <h1>Order summary</h1>
+        <div class="table-responsive text-nowrap">
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Item title</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total Item Price</th>
+                <th scope="col">action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order_item in order.items.all %}
+                <tr>
+                <th scope="row">
+                  <img src="{{order_item.item.image.url}}" class="rounded small-img" alt="">
+                </th>
+                <td>{{order_item.item.title}}</td>
+                <td>
+                  <a href="{{order_item.item.get_remove_single_from_cart_url}}">
+                    <button class="btn btn-outline-primary float-right">-</button>
+                  </a>
+                  {{order_item.quantity}}
+                   <a href="{{order_item.item.get_add_to_cart_url}}">
+                    <button class="btn btn-outline-primary float-right">+</button>
+                  </a>
+                </td>
+                {% if order_item.item.discount_price %}
+                  <td>{{order_item.item.discount_price}}</td>
+                {% else %}
+                  <td>{{order_item.item.price}}</td>
+                {% endif %}
+                <td>{{order_item.get_final_price}}
+                  {% if order_item.item.discount_price %}
+                    <span class="badge badge-pill badge-info">{{order_item.get_amount_saved}}</span>
+                  {% endif %}
+                </td>
+                <td>
+                  <a href="{{order_item.item.get_remove_from_cart_url}}">
+                    <span style="color: red;" class="float-right">
+                      <button class="btn btn-outline-primary float-right">Remove</button>
+                    </span>
+                  </a>
+                </td>
+              </tr>
+              {% empty %}
+                <tr>
+                  <td colspan="5">
+                    <a href="{% url 'ourproduct' %}" class="btn btn-outline-primary float-right">Continue Shopping</a>
+                  </td>
+                </tr>
+              {% endfor %}
+              
+              {% if order.get_total %}
+                <tr>
+                  <td colspan="4">
+                    <h4>Order total</h4>
+                  </td>
+                  <td colspan="1">
+                    Tz {{order.get_total}} sh.
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="5">
+                    <a href="{% url 'settlement' %}" class="btn btn-outline-warning float-right ml-2">confirm cart</a>
+                    <a href="{% url 'ourproduct' %}" class="btn btn-outline-primary float-right">Continue Shopping</a>
+                  </td>
+                </tr>
+              {% endif %}
+  
+            </tbody>
+          </table>
+          {% else %}
+  home
+          <h4 class="mt-5 pt-4">No items in your cart</h4>
+          <a href="{% url 'ourproduct' %}" class="btn btn-outline-primary">Continue Shopping</a>
+          {% endif %}
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+
+
+
+
+
+
+  <script src="{% static 'app1/assets/js/wow.min.js' %}"></script><script src="js/jquery-1.12.0.min.js"></script>
+<script src="{% static 'app1/assets/js/bootstrap.min.js' %}"></script>
+</body>
+</html>
+{% endblock %}

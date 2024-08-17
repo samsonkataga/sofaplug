@@ -1,0 +1,152 @@
+
+{% extends 'app1/base.html' %}
+{% load static %}
+{% block container %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <style type="text/css">
+      .row .col-md-11 a {
+        padding-right: 60px auto; text-decoration: none; font-weight: 500; font-size: 20px;
+              border: 1px solid red; border-radius: 10px; text-align: center; padding-left: 10px auto;
+              padding: 5px; background: red; color: white;
+
+      }
+      .row .col-md-11 a:hover{
+        color: white;
+        background: black;
+        border: 1px solid black;
+      }
+    </style>
+
+
+  </head>
+
+  <body>
+
+    <!-- ***** Preloader Start ***** -->
+
+
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <div class="banner header-text">
+      <div class="owl-banner owl-carousel">
+        <div class="banner-item-01">
+          <div class="text-content">
+            <h4>Best Offer</h4>
+            <h2>Furnitures</h2>
+                    
+          </div>
+        </div>
+        <div class="banner-item-02">
+          <div class="text-content">
+            <h4>Best Product</h4>
+            <h2>Get your best products</h2>
+          </div>
+        </div>
+        <div class="banner-item-03">
+          <div class="text-content">
+            <h4>Last Minute</h4>
+            <h2>Grab last minute deals</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+              
+              <div class="container">
+              <div class="row">
+                <h4>Categories:  </h4>
+                <div class="col-md-11">
+                  {% for x in categories %}
+              <a href="{{x.get_absolute_url}}">{{x.name}}</a>
+                  {% endfor %}
+              <a href="{% url 'ourproduct' %}">All products</a>  
+              </div>
+              </div>
+              </div>
+              
+    <div class="latest-products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              
+              <a href="{% url 'ourproduct' %}">view all products <i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+
+
+          {% for x in item %}
+
+          <div class="col-md-4">
+            <div class="product-item">
+
+             
+
+              {% if x.image %}
+              <a href="{% url 'detailed_product' x.id %}"><img src="{{x.image.url}}"></a>
+              {% else %}
+              <a href="{% url 'detailed_product' x.id %}"><img src="{% static 'app1/kote.jpg' %}"></a>
+                              {% endif %}
+              <div class="down-content">
+                <a href="{% url 'detailed_product' x.id %}"><h4>{{x.title}}</h4></a>
+                <h6>Tsh. {{x.price}}</h6>
+                <p><del>Tsh. {{x.discount_price}}</del></p>
+                <ul class="stars">
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                  <li><i class="fa fa-star"></i></li>
+                </ul>
+                <span>{{x.updated}}</span>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+
+
+          
+        </div>
+      </div>
+    </div>
+
+   
+
+
+    <div class="call-to-action">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="inner-content">
+              <div class="row">
+                <div class="col-md-8">
+                  <h4>Creative &amp; Unique <em>sofa</em> store</h4>
+                  <p>Get what you deserver for low cost and affordable price worldwide.</p>
+                </div>
+                <div class="col-md-4">
+                  <a href="{% url 'ourproduct' %}" class="filled-button">Purchase Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+
+
+  </body>
+
+</html>
+
+{% endblock %}
